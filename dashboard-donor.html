@@ -1,0 +1,54 @@
+<!-- dashboard-donor.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donor Dashboard - Helpify</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-purple-600 text-white py-4 px-6 shadow-md flex justify-between items-center">
+    <h1 class="text-xl font-bold">Helpify Donor</h1>
+    <a href="profile.html" class="bg-white text-purple-700 px-4 py-2 rounded-lg font-medium hover:bg-purple-100 transition">Profile</a>
+  </header>
+
+  <!-- Dashboard Content -->
+  <main class="flex-grow px-6 py-8">
+    <h2 class="text-2xl font-bold text-purple-700 mb-6">Welcome, Donor!</h2>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 gap-6">
+      
+      <a href="donate-options.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1048/1048941.png" alt="Donate" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">Donate Options</span>
+      </a>
+
+      <a href="monetary-donation.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Money" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">Donate Money</span>
+      </a>
+
+      <a href="food-donation.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Food" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">Donate Food</span>
+      </a>
+
+      <a href="donation-history.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/860/860790.png" alt="History" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">Donation History</span>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center text-sm py-4 text-gray-500 border-t">
+    &copy; 2025 Helpify. All rights reserved.
+  </footer>
+
+</body>
+</html>

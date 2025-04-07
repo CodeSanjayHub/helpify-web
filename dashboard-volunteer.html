@@ -1,0 +1,100 @@
+<!-- dashboard-volunteer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volunteer Dashboard - Helpify</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <header class="bg-purple-700 text-white p-4">
+    <h1 class="text-xl font-bold">Welcome, Volunteer</h1>
+  </header>
+
+  <main class="p-4 space-y-6">
+
+    <!-- 📢 Notification Box -->
+    <div class="bg-white p-4 rounded-xl shadow">
+      <h2 class="text-lg font-semibold text-purple-700 mb-2">Quick Actions</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <a href="my-volunteering.html" class="bg-green-100 text-green-800 p-4 rounded-lg text-center font-medium hover:shadow">
+          📋 My Tasks
+        </a>
+        <a href="nearby-requests.html" class="bg-blue-100 text-blue-800 p-4 rounded-lg text-center font-medium hover:shadow">
+          📍 Nearby Requests
+        </a>
+        <a href="profile.html" class="bg-yellow-100 text-yellow-800 p-4 rounded-lg text-center font-medium hover:shadow">
+          👤 Profile
+        </a>
+        <a href="settings.html" class="bg-red-100 text-red-800 p-4 rounded-lg text-center font-medium hover:shadow">
+          ⚙️ Settings
+        </a>
+      </div>
+    </div>
+
+    <!-- 🌍 Live Disaster Tracker -->
+    <div class="bg-white p-4 rounded-xl shadow">
+      <h2 class="text-lg font-semibold text-purple-700 mb-4">🆘 Live Disaster Tracker</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Map -->
+        <div class="w-full h-80 rounded-lg overflow-hidden">
+          <div id="map" class="h-full w-full rounded"></div>
+        </div>
+
+        <!-- List + Notify -->
+        <div class="space-y-4 text-sm">
+          <ul id="disasterList" class="space-y-3 text-gray-700"></ul>
+          <button onclick="notifyVolunteers()" class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold shadow">
+            🔔 Notify Volunteers
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // 🌍 Initialize map
+    const map = L.map('map').setView([13.0827, 80.2707], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap',
+    }).addTo(map);
+
+    // 🚨 Mock disasters
+    const disasters = [
+      { type: 'Flood', location: 'Chennai', lat: 13.0827, lon: 80.2707, severity: 'High' },
+      { type: 'Earthquake', location: 'Coimbatore', lat: 11.0168, lon: 76.9558, severity: 'Medium' },
+      { type: 'Fire', location: 'Madurai', lat: 9.9252, lon: 78.1198, severity: 'Critical' }
+    ];
+
+    const list = document.getElementById('disasterList');
+
+    disasters.forEach(d => {
+      L.marker([d.lat, d.lon]).addTo(map)
+        .bindPopup(`<strong>${d.type}</strong><br>${d.location}<br>Severity: ${d.severity}`);
+
+      const item = document.createElement('li');
+      item.innerHTML = `
+        <div class="flex justify-between items-center">
+          <div>
+            <strong>${d.type}</strong> in ${d.location}
+            <div class="text-xs text-gray-500">Severity: ${d.severity}</div>
+          </div>
+          <span class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded">${d.location}</span>
+        </div>`;
+      list.appendChild(item);
+    });
+
+    function notifyVolunteers() {
+      alert("🚨 Alert: All nearby volunteers have been notified!");
+    }
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<!-- dashboard-requester.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Requester Dashboard - Helpify</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-purple-600 text-white py-4 px-6 shadow-md flex justify-between items-center">
+    <h1 class="text-xl font-bold">Helpify Requester</h1>
+    <a href="profile.html" class="bg-white text-purple-700 px-4 py-2 rounded-lg font-medium hover:bg-purple-100 transition">Profile</a>
+  </header>
+
+  <!-- Dashboard Content -->
+  <main class="flex-grow px-6 py-8">
+    <h2 class="text-2xl font-bold text-purple-700 mb-6">Welcome, Requester!</h2>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 gap-6">
+      
+      <a href="request-help.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/619/619034.png" alt="Request Help" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">Request Help</span>
+      </a>
+
+      <a href="requests-feed.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png" alt="Requests Feed" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">Public Requests</span>
+      </a>
+
+      <a href="my-requests.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/456/456212.png" alt="My Requests" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">My Requests</span>
+      </a>
+
+      <a href="notifications.html" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition flex flex-col items-center text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png" alt="Notifications" class="w-12 h-12 mb-3">
+        <span class="font-medium text-gray-700">Notifications</span>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center text-sm py-4 text-gray-500 border-t">
+    &copy; 2025 Helpify. All rights reserved.
+  </footer>
+
+</body>
+</html>

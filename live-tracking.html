@@ -1,0 +1,103 @@
+<!-- live-tracking.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Disaster Tracker - Helpify</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <header class="bg-purple-700 text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Disaster Tracker</h1>
+    <a href="dashboard-volunteer.html" class="text-sm underline">Back to Dashboard</a>
+  </header>
+
+  <main class="p-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- 🗘️ Map -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div id="map" class="h-[400px] w-full"></div>
+      </div>
+
+      <!-- 📜 Disaster Feed -->
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <h2 class="text-lg font-semibold text-purple-700 mb-4">Active Disasters</h2>
+        <ul id="disasterList" class="space-y-4 text-sm text-gray-700">
+          <!-- Populated by JS -->
+        </ul>
+
+        <button onclick="notifyVolunteers()" class="mt-6 bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg shadow-md font-semibold transition">
+          🔔 Notify Nearby Volunteers
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // 🌍 Initialize Leaflet map
+    const map = L.map('map').setView([13.0827, 80.2707], 6); // Centered on Tamil Nadu
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap',
+    }).addTo(map);
+
+    // 🆘 Mock disaster data (can be fetched from real API)
+    const disasters = [
+      {
+        type: 'Flood',
+        location: 'Chennai',
+        lat: 13.0827,
+        lon: 80.2707,
+        severity: 'High',
+      },
+      {
+        type: 'Earthquake',
+        location: 'Coimbatore',
+        lat: 11.0168,
+        lon: 76.9558,
+        severity: 'Medium',
+      },
+      {
+        type: 'Fire',
+        location: 'Madurai',
+        lat: 9.9252,
+        lon: 78.1198,
+        severity: 'Critical',
+      }
+    ];
+
+    const disasterListEl = document.getElementById('disasterList');
+
+    disasters.forEach(d => {
+      // Add to map
+      L.marker([d.lat, d.lon])
+        .addTo(map)
+        .bindPopup(`<strong>${d.type}</strong><br>${d.location}<br>Severity: ${d.severity}`)
+        .openPopup();
+
+      // Add to list
+      const item = document.createElement('li');
+      item.innerHTML = `
+        <div class="flex justify-between items-center">
+          <div>
+            <strong>${d.type}</strong> in ${d.location}
+            <div class="text-xs text-gray-500">Severity: ${d.severity}</div>
+          </div>
+          <span class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded">${d.location}</span>
+        </div>`;
+      disasterListEl.appendChild(item);
+    });
+
+    function notifyVolunteers() {
+      alert("✅ Volunteers near affected zones have been notified!");
+    }
+  </script>
+
+</body>
+</html>
